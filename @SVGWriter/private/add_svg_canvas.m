@@ -17,7 +17,7 @@ str_canvas_size = sprintf('width="%dcm" height="%dcm"', canvas_size_cm);
 str_canvas_view = sprintf('viewBox="%d %d %d %d"', [0, 0, canvas_size_px]);
 
 %TODO: why this exactly?
-str_canvas_xmlns = 'xmlns="http://www.w3.org/2000/svg"'; % 'xmlns="full"'
+str_canvas_xmlns = 'xmlns="http://www.w3.org/2000/svg"'; %TODO: can we use 'xmlns="full"'?
 str_canvas_version = 'version="1.1"';
 
 % combine

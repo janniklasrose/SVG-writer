@@ -46,18 +46,18 @@ writer.add_comment('Description');
 writer.add_description('2polygons');
 
 writer.add_comment('Canvas');
-writer.add_outline([1, writer.canvas_size(1)-1], [1, writer.canvas_size(2)-1], 'blue', 2);
+writer.add_rectangle([1, writer.canvas_size(1)-1], [1, writer.canvas_size(2)-1], 'FillColor', 'none', 'StrokeColor', 'blue', 'StrokeWidth', 2);
 % sadly, some browsers might not show this. Inkscape does show the rectangle, though.
 
 writer.add_comment('Background');
 writer.add_image(background, [0, 0]);
 
 writer.add_comment('Outline');
-writer.add_outline(polygons_xrange, polygons_yrange, 'red', 1);
+writer.add_rectangle(polygons_xrange, polygons_yrange, 'FillColor', 'none', 'StrokeColor', 'red', 'StrokeWidth', 1);
 
 writer.add_comment('Polygons');
 for poly = transpose(polygons(:))
-    writer.add_polygon(poly, 'lime', 'blue', 1);
+    writer.add_polygon(poly, 'FillColor', 'lime', 'StrokeColor', 'blue', 'StrokeWidth', 1);
 end
 
 writer.write('example.svg');

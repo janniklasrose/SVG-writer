@@ -85,18 +85,19 @@ classdef SVGWriter < handle
             this.add_line_to_svg(polygonstr);
         end
 
-        function add_image(this, image, varargin)
+        function add_image(this, image, pos)
             if isvector(image) || ndims(image) > 3 || ~any(size(image, 3) == [1, 3])
                 error('Expected an image, either grayscale or RGB');
             end
-            imagestr = add_image_to_svg(image, varargin{:});
+            validateattributes(pos, {'numeric'}, {'numel', 2, 'finite'});
+            imagestr = add_image_to_svg(image, pos);
             this.add_line_to_svg(imagestr);
         end
 
-        function add_outline(this, x, y, varargin)
+        function add_rectangle(this, x, y, varargin)
             validateattributes(x, {'numeric'}, {'numel', 2, 'increasing', 'finite'});
             validateattributes(y, {'numeric'}, {'numel', 2, 'increasing', 'finite'});
-            outlinestr = add_outline_to_svg(x, y, varargin{:});
+            outlinestr = add_rectangle_to_svg(x, y, varargin{:});
             this.add_line_to_svg(outlinestr);
         end
 
@@ -112,7 +113,7 @@ classdef SVGWriter < handle
 
     methods(Access=public) % write all data that was added
 
-        function write(this, filename, varargin)
+        function write(this, filename)
             validateattributes(filename, {'string', 'char'}, {'scalartext'});
             [doc_header, doc_footer] = add_svg_file();
             [svg_header, svg_footer] = add_svg_canvas(this.canvas_size, this.resolution);

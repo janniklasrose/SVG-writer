@@ -24,7 +24,9 @@ function [base64] = image2base64(image)
 if ~ischar(image) % assume is numeric data instead of filename
     file = tempname(tempdir()); % unique path
     file = [file, '.png']; % assume PNG!
-    imwrite(image, file); % write to a temporary file
+    somedate = datenum(2000, 1, 1); % otherwise the imwrite files are not reproducibly identical
+    opts = {'CreationTime', somedate, 'ImageModTime', somedate};
+    imwrite(image, file, opts{:}); % write to a temporary file
     image = file; % use the name of this file as if it was given as input
 end
 
