@@ -12,7 +12,7 @@ str_meta = sprintf('x="%d" y="%d" width="%d" height="%d"', x, y, width, height);
 
 % embed the image
 %TODO: what if we have a format other than png?
-image_base64 = image2base64(image);
+image_base64 = image2base64(image); %TODO: allow image to be a file
 str_bits = sprintf('href="data:image/png;base64,%s"', image_base64);
 % despite the ImageElement definition on w3.org, xlink:href is deprecated, just use href.
 

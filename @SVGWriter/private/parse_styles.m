@@ -11,6 +11,9 @@ parser.addOptional('StrokeColor', '');
 parser.addOptional('StrokeWidth', 1);
 parser.parse(varargin{:}); % adds them to parser.Results
 
+%TODO: support 'FillColor', [r, g, b], which turns into "rgb(r, g, b)"
+% https://www.w3.org/TR/SVG11/types.html#ColorKeywords
+
 % process options
 style = "";
 style = addtolist(style, process('fill:%s', 'FillColor', parser));

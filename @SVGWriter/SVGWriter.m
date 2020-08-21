@@ -86,8 +86,15 @@ classdef SVGWriter < handle
         end
 
         function add_image(this, image, pos)
-            if isvector(image) || ndims(image) > 3 || ~any(size(image, 3) == [1, 3])
-                error('Expected an image, either grayscale or RGB');
+            if false %ischar(image) || isstring(image) % disable for now
+                % good
+            elseif isnumeric(image)
+                if isvector(image) || ndims(image) > 3 || ~any(size(image, 3) == [1, 3])
+                    error('Expected an image, either grayscale or RGB');
+                end
+            else
+                %error('Expected a filename char/string or numeric data as image');
+                error('Expected numeric data as image');
             end
             validateattributes(pos, {'numeric'}, {'numel', 2, 'finite'});
             imagestr = add_image_to_svg(image, pos);
